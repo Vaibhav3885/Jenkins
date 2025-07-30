@@ -62,16 +62,20 @@ Before any code can be merged into the main branch (or develop), it must go thro
 🛠️ How It’s Done:
 On GitHub / GitLab:
 Developer creates a feature branch:
-``` git checkout -b feature/add-login ```
+``` 
+git checkout -b feature/add-login
+```
 
 Pushes code to remote:
 
-``` git add .
+```
+git add .
 git commit -m "Added login feature"
-git push origin feature/add-login ```
+git push origin feature/add-login
+```
 Creates a Pull Request (PR) from feature/add-login → develop.
 
-Set GitHub/GitLab rules:
+#### Set GitHub/GitLab rules:
 
 Require at least 1–2 reviewers.
 
@@ -135,7 +139,7 @@ stage('Docker Build') {
   }
 }
 ```
-🚀 Why Use Tags:
+##### 🚀 Why Use Tags:
 Easy rollback: deploy an earlier version by tag.
 
 Every artifact (image, release, etc.) is linked to a clear version.
