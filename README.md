@@ -55,6 +55,93 @@ Pull Requests were mandatory with peer review.
 
 Tags were used for versioning artifacts in the CI pipeline.
 
+#### ✅ Pull Requests with Peer Review
+#### 🧩 What It Means:
+Before any code can be merged into the main branch (or develop), it must go through a Pull Request (PR) and get approved by reviewers (usually 1–2 team members).
+
+🛠️ How It’s Done:
+On GitHub / GitLab:
+Developer creates a feature branch:
+``` git checkout -b feature/add-login ```
+
+Pushes code to remote:
+
+``` git add .
+git commit -m "Added login feature"
+git push origin feature/add-login ```
+Creates a Pull Request (PR) from feature/add-login → develop.
+
+Set GitHub/GitLab rules:
+
+Require at least 1–2 reviewers.
+
+Block merge if there are code conflicts or failed checks (like build/test failures).
+
+Run CI pipeline on PR using GitHub Actions or Jenkins:
+
+Linting
+
+Unit tests
+
+SAST scan
+
+Once approved and checks pass → merge is allowed.
+
+🔒 Why Important in CI/CD:
+Ensures code quality, security, and collaboration.
+
+Stops broken or insecure code from reaching shared branches.
+
+Triggers CI jobs automatically after push or merge.
+
+✅ Tags for Artifact Versioning
+🧩 What It Means:
+Tags mark a specific point in Git history as a release version (e.g., v1.0.0).
+These tags are used in pipelines to version:
+
+Docker images
+
+Helm charts
+
+Deployment releases
+
+🛠️ How It’s Done:
+Example with Git:
+```
+git tag -a v1.0.0 -m "Release version 1.0.0"
+git push origin v1.0.0
+```
+Jenkins Setup:
+Use Jenkins to detect a new Git tag (via webhook or poll).
+
+Trigger pipeline only on tag events.
+
+Use the tag name as version in Docker image:
+
+```
+docker build -t myapp:${GIT_TAG} .
+docker push myapp:${GIT_TAG}
+Jenkinsfile Snippet:
+groovy
+Copy
+Edit
+environment {
+  GIT_TAG = sh(script: "git describe --tags", returnStdout: true).trim()
+}
+stage('Docker Build') {
+  steps {
+    sh "docker build -t myapp:${GIT_TAG} ."
+    sh "docker push myapp:${GIT_TAG}"
+  }
+}
+```
+🚀 Why Use Tags:
+Easy rollback: deploy an earlier version by tag.
+
+Every artifact (image, release, etc.) is linked to a clear version.
+
+Promotes reproducibility in deployments.
+
 ### Q3: How do you implement approval gates in your pipeline?
 Answer:
 
