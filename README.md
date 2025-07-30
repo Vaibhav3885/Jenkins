@@ -3,7 +3,7 @@
 
 ## Pipeline example
 
-'''
+```
 pipeline {
   agent any
   parameters {
@@ -45,4 +45,4 @@ pipeline {
     }
   }
 }
-'''
+```
