@@ -15,7 +15,8 @@ Sample Answer (based on real-world scenario):
 
 In one of my projects, we had multiple microservices, each in its own Git repo. I used Jenkins for CI/CD.
 
-For CI: When a developer pushes code to the develop branch, it triggers a Jenkins pipeline that:
+#### For CI: 
+When a developer pushes code to the develop branch, it triggers a Jenkins pipeline that:
 
 Pulls the latest code.
 
@@ -25,7 +26,7 @@ Performs SAST using tools like SonarQube.
 
 Builds Docker images and pushes them to ECR.
 
-For CD:
+#### For CD:
 
 On merging into the main branch, we trigger the deployment job:
 
@@ -42,11 +43,11 @@ Answer:
 
 We followed the Gitflow workflow:
 
-feature/* branches for new features.
+``` feature/* ``` branches for new features.
 
-develop branch for integration testing.
+``` develop ``` branch for integration testing.
 
-release/* for staging preparation.
+``` release/* ``` for staging preparation.
 
 main for production-ready code.
 
